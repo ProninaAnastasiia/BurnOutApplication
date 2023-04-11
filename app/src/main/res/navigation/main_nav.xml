@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.burnoutapplication.MainFragment"
+        android:label="Главная"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moodFragment"
+        android:name="com.example.burnoutapplication.MoodFragment"
+        android:label="Настроение"
+        tools:layout="@layout/fragment_mood" />
+    <fragment
+        android:id="@+id/timetableFragment"
+        android:name="com.example.burnoutapplication.TimetableFragment"
+        android:label="Расписание"
+        tools:layout="@layout/fragment_timetable" />
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.burnoutapplication.ListFragment"
+        android:label="Список дел"
+        tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="com.example.burnoutapplication.TutorialFragment"
+        android:label="fragment_tutorial"
+        tools:layout="@layout/fragment_tutorial" >
+        <action
+            android:id="@+id/action_tutorialFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.burnoutapplication.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.burnoutapplication.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_refFragment"
+            app:destination="@id/refFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_testFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/refFragment"
+        android:name="com.example.burnoutapplication.RefFragment"
+        android:label="fragment_ref"
+        tools:layout="@layout/fragment_ref" >
+        <action
+            android:id="@+id/action_refFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.burnoutapplication.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.example.burnoutapplication.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" >
+        <action
+            android:id="@+id/action_testFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_testFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.burnoutapplication.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

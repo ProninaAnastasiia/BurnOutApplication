@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/moodFragment"
+        android:title="Настроение"
+        android:icon="@drawable/ic_mood" />
+    <item
+        android:id="@+id/mainFragment"
+        android:title="Главная"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/timetableFragment"
+        android:title="Расписание"
+        android:icon="@drawable/ic_timetable" />
+    <item
+        android:id="@+id/listFragment"
+        android:title="Список дел"
+        android:icon="@drawable/ic_task" />
+</menu>
