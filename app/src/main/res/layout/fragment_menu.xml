@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#B9000000"
         app:srcCompat="@drawable/ic_arrow_back"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/settingsBtn"

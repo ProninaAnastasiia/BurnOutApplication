@@ -1,9 +1,7 @@
-package com.example.burnoutapplication
+package com.example.burnoutapplication.test
 
-import android.R.attr.defaultValue
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentResultBinding
 
 

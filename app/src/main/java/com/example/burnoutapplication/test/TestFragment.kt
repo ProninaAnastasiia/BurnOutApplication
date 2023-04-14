@@ -1,4 +1,4 @@
-package com.example.burnoutapplication
+package com.example.burnoutapplication.test
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentTestBinding
 import kotlin.math.pow
 import kotlin.math.roundToInt

@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/tutorialFragment"
-        android:name="com.example.burnoutapplication.TutorialFragment"
+        android:name="com.example.burnoutapplication.menu.TutorialFragment"
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.burnoutapplication.AboutFragment"
+        android:name="com.example.burnoutapplication.menu.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" >
         <action
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/refFragment"
-        android:name="com.example.burnoutapplication.RefFragment"
+        android:name="com.example.burnoutapplication.menu.RefFragment"
         android:label="fragment_ref"
         tools:layout="@layout/fragment_ref" >
         <action
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.burnoutapplication.SettingsFragment"
+        android:name="com.example.burnoutapplication.menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.example.burnoutapplication.TestFragment"
+        android:name="com.example.burnoutapplication.test.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" >
         <action
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.burnoutapplication.ResultFragment"
+        android:name="com.example.burnoutapplication.test.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action

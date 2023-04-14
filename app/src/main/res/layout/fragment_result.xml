@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".ResultFragment">
+    tools:context=".test.ResultFragment">
 
     <TextView
         android:id="@+id/tv_result"
@@ -41,7 +41,7 @@
         android:background="@color/white"
         app:srcCompat="@drawable/ic_help_14"
         app:tint="#B9000000"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/ll_progress1"
@@ -95,7 +95,7 @@
         android:background="@color/white"
         app:srcCompat="@drawable/ic_help_14"
         app:tint="#B9000000"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/ll_progress2"
@@ -149,7 +149,7 @@
         android:background="@color/white"
         app:srcCompat="@drawable/ic_help_14"
         app:tint="#B9000000"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/ll_progress3"
@@ -186,12 +186,12 @@
         android:id="@+id/textView_index"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_progress3"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Системный индекс синдрома эмоционального выгорания:"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_below = "@+id/ll_progress3"/>
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView_indexBurnout"

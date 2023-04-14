@@ -1,4 +1,4 @@
-package com.example.burnoutapplication
+package com.example.burnoutapplication.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
+import com.example.burnoutapplication.R
 
 class TutorialFragment : Fragment() {
     override fun onCreateView(

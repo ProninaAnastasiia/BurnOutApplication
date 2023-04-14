@@ -1,4 +1,6 @@
-package com.example.burnoutapplication
+package com.example.burnoutapplication.test
+
+import com.example.burnoutapplication.test.Question
 
 object Constants {
     fun getQuestions(): ArrayList<Question>{
