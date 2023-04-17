@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter
 
 @Entity(tableName = "task_item_table")
 class TaskItem(@ColumnInfo(name = "name") var name: String,
-               @ColumnInfo(name = "desc") var desc: String,
                @ColumnInfo(name = "completedDateString") var completedDateString: String?,
                @PrimaryKey(autoGenerate = true) var id: Int = 0)
 {

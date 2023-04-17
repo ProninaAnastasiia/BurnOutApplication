@@ -35,17 +35,23 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
         if (taskItem != null)
         {
             binding.tvTitle.text = "Edit Task"
+            binding.deleteButton.visibility = View.VISIBLE
             val editable = Editable.Factory.getInstance()
             binding.name.text = editable.newEditable(taskItem!!.name)
-            binding.desc.text = editable.newEditable(taskItem!!.desc)
         }
         else
         {
+            binding.deleteButton.visibility = View.GONE
             binding.tvTitle.text = "New Task"
         }
 
         binding.saveButton.setOnClickListener {
             saveAction()
+        }
+
+        binding.deleteButton.setOnClickListener {
+            taskViewModel.deleteTaskItem(taskItem!!)
+            dismiss()
         }
 
         return binding.root
@@ -54,17 +60,15 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
     private fun saveAction()
     {
         val name = binding.name.text.toString()
-        val desc = binding.desc.text.toString()
 
         if(taskItem == null)
         {
-            val newTask = TaskItem(name,desc,null)
+            val newTask = TaskItem(name,null)
             taskViewModel.addTaskItem(newTask)
         }
         else
         {
             taskItem!!.name = name
-            taskItem!!.desc = desc
 
             taskViewModel.updateTaskItem(taskItem!!)
         }
