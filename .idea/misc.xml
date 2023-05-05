@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/back.xml" value="0.1815" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/custom_progressbar.xml" value="0.1465" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/default_dot.xml" value="0.1495" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/ic_affirmations.xml" value="0.1665" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1815" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1125" />
@@ -12,24 +13,34 @@
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/ic_task.xml" value="0.1" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/main_text_bg.xml" value="0.15" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/my_button_bg.xml" value="0.1815" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/selected_dot.xml" value="0.1495" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/drawable/viewpager_indicators.xml" value="0.1495" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_about.xml" value="0.20516304347826086" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_edit_page.xml" value="0.1691995947315096" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_edit_timetable.xml" value="0.17603850050658562" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_list.xml" value="0.3194888178913738" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_main.xml" value="0.25" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_mood.xml" value="0.17603850050658562" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_new_task.xml" value="0.3161231884057971" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_new_timetable_card.xml" value="0.25" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_ref.xml" value="0.20516304347826086" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_result.xml" value="0.33" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_selection_for_copy.xml" value="0.17603850050658562" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_settings.xml" value="0.20516304347826086" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_test.xml" value="0.36666666666666664" />
-        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_timetable.xml" value="0.17603850050658562" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_timetable.xml" value="0.25" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_tutorial.xml" value="0.20516304347826086" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_tuturial.xml" value="0.25271739130434784" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/task_item_card.xml" value="0.3161231884057971" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/timetable_item_card.xml" value="0.17553191489361702" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/timetable_item_card_edit.xml" value="0.17553191489361702" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/menu/bottom_menu.xml" value="0.2" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/menu/filter_menu.xml" value="0.26666666666666666" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/menu/popup_menu.xml" value="0.3453703703703704" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/menu/side_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/xml/root_preferences.xml" value="0.17603850050658562" />
       </map>
     </option>
   </component>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".timetable.SelectionForCopyFragment">
+
+    <TextView
+        android:id="@+id/taskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выберите дни недели"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <CheckBox
+        android:id="@+id/chMon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/Mon"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chTue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Tue"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chWen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Wen"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chThu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Thu"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chFri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Fri"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chSat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Sat"
+        android:textSize="18sp">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/chSun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Sun"
+        android:textSize="18sp">
+    </CheckBox>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/purple_200"
+        android:textColor="?colorOnPrimary"
+        android:padding="10dp"
+        android:text="@string/saveBtn"/>
+
+</LinearLayout>

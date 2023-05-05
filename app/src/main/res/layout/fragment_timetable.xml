@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimetableFragment">
+    tools:context=".TimetableFragment"
+    android:id="@+id/timetableFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tvDay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Timetable Fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Понедельник"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDay"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="10dp"
+        android:justificationMode="inter_word"
+        android:text="@string/empty_timetable_message"
+        android:textColor="#524C59"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDay"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/design_default_color_background" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/editTimetableBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="35dp"
+        android:backgroundTint="@color/purple_200"
+        android:scaleY="1.3"
+        android:scaleX="1.3"
+        app:icon="@drawable/ic_edit_calendar_24"
+        app:iconTint="?colorOnPrimary" />
+
+</RelativeLayout>

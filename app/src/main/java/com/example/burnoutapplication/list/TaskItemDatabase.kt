@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.burnoutapplication.timetable.TimetableItem
+import com.example.burnoutapplication.timetable.TimetableItemDao
 
-@Database(entities = [TaskItem::class], version = 1, exportSchema = false)
+@Database(entities = [TaskItem::class, TimetableItem::class], version = 1, exportSchema = false)
 public abstract class TaskItemDatabase : RoomDatabase()
 {
     abstract fun taskItemDao(): TaskItemDao
+    abstract fun timetableItemDao(): TimetableItemDao
 
     companion object
     {

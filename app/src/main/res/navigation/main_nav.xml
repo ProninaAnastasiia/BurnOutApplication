@@ -23,7 +23,11 @@
         android:id="@+id/timetableFragment"
         android:name="com.example.burnoutapplication.TimetableFragment"
         android:label="Расписание"
-        tools:layout="@layout/fragment_timetable" />
+        tools:layout="@layout/fragment_timetable" >
+        <action
+            android:id="@+id/action_timetableFragment_to_editTimetableFragment"
+            app:destination="@id/editTimetableFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.burnoutapplication.ListFragment"
@@ -109,5 +113,14 @@
         <action
             android:id="@+id/action_resultFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTimetableFragment"
+        android:name="com.example.burnoutapplication.timetable.EditTimetableFragment"
+        android:label="fragment_edit_timetable"
+        tools:layout="@layout/fragment_edit_timetable" >
+        <action
+            android:id="@+id/action_editTimetableFragment_to_timetableFragment"
+            app:destination="@id/timetableFragment" />
     </fragment>
 </navigation>
