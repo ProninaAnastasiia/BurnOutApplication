@@ -1,44 +1,61 @@
 package com.example.burnoutapplication
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.burnoutapplication.databinding.FragmentListBinding
 import com.example.burnoutapplication.list.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.util.*
 
 class ListFragment : Fragment(), TaskItemClickListener {
     private lateinit var binding: FragmentListBinding
-    private val taskViewModel: TaskViewModel by activityViewModels() {
+    private val taskViewModel: TaskViewModel by activityViewModels {
         TaskItemModelFactory((requireActivity().application as TodoApplication).repository)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentListBinding.inflate(layoutInflater)
 
         binding.newTaskButton.setOnClickListener {
             NewTaskFragment(null).show(parentFragmentManager, "newTaskTag")
         }
 
-        setRecyclerView()
+        binding.filterButton.setOnClickListener{
+            showPopup(binding.filterButton)
+        }
+
+        binding.tvMonth.text = "Список дел за " + SimpleDateFormat("LLLL", Locale("ru")).format(Date())
+
+        setRecyclerView(0)
+
 
         return binding.root
     }
 
-    private fun setRecyclerView()
+    private fun setRecyclerView(filter: Int)
     {
         val fragment = this
         taskViewModel.taskItems.observe(activity as LifecycleOwner){
             binding.todoListRecyclerView.apply {
-                layoutManager = LinearLayoutManager(requireActivity())
-                adapter = TaskItemAdapter(it, fragment)
+                if(isAdded) layoutManager = LinearLayoutManager(requireActivity())
+                adapter = TaskItemAdapter(it.filterList(it as MutableList<TaskItem>,filter), fragment)
+                binding.todoListRecyclerView.scrollToPosition(TaskItemAdapter(it.filterList(it as MutableList<TaskItem>,filter), fragment).itemCount - 1)
+                if (TaskItemAdapter(it, fragment).itemCount!=0) binding.tvMessage.visibility = View.GONE
             }
         }
     }
@@ -56,6 +73,62 @@ class ListFragment : Fragment(), TaskItemClickListener {
     override fun unCompleteTaskItem(taskItem: TaskItem)
     {
         taskViewModel.unCompleted(taskItem)
+    }
+
+    private fun showPopup(show: ImageButton) {
+        val popup = PopupMenu(requireActivity(), show)
+        popup.inflate(R.menu.filter_menu)
+
+        popup.setOnMenuItemClickListener { item: MenuItem? ->
+            when (item!!.itemId) {
+                R.id.today -> {
+                    setRecyclerView(1)
+                }
+                R.id.week -> {
+                    setRecyclerView(2)
+                }
+                R.id.month -> {
+                    setRecyclerView(3)
+                }
+                R.id.allTime -> {
+                    setRecyclerView(0)
+                }
+            }
+            true
+        }
+        popup.show()
+    }
+
+    private fun <E> List<E>.filterList(taskItems: MutableList<TaskItem>, filter: Int): MutableList<TaskItem> {
+        val filtered: MutableList<TaskItem> = ArrayList<TaskItem>()
+
+        when(filter){
+            1 -> {
+                for (i in taskItems) {
+                    if (i.completedDateString == DateTimeFormatter.ISO_DATE.format(LocalDate.now())) {
+                        filtered.add(i)
+                    }
+                }
+            }
+            2 -> {
+                for (i in taskItems) {
+                    if (ChronoUnit.DAYS.between(i.completedDate(), LocalDate.now())  < 8) {
+                        filtered.add(i)
+                    }
+                }
+            }
+            3 -> {
+                for (i in taskItems) {
+                    if (ChronoUnit.MONTHS.between(i.completedDate(), LocalDate.now())  <= 1) {
+                        filtered.add(i)
+                    }
+                }
+            }
+            else -> {
+                return taskItems
+            }
+        }
+        return filtered
     }
 
 }

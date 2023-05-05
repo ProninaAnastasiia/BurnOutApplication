@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/today"
+        android:title="За сегодня" />
+    <item
+        android:id="@+id/week"
+        android:title="За неделю" />
+
+    <item
+        android:id="@+id/month"
+        android:title="За месяц" />
+    <item
+        android:id="@+id/allTime"
+        android:title="За все время" />
+</menu>

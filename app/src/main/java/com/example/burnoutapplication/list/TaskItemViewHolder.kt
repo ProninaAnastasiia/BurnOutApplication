@@ -17,7 +17,7 @@ class TaskItemViewHolder(
         binding.completeButton.setColorFilter(taskItem.imageColor(context))
 
         binding.completeButton.setOnClickListener{
-            if(!taskItem.isCompleted()) clickListener.completeTaskItem(taskItem)
+            if(!taskItem.isCompleted) clickListener.completeTaskItem(taskItem)
             else clickListener.unCompleteTaskItem(taskItem)
         }
 

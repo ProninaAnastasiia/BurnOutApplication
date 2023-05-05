@@ -7,11 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
+    <ImageButton
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:scaleY="1.1"
+        android:scaleX="1.1"
+        android:src="@drawable/ic_filter_24"
+        android:backgroundTint="@android:color/transparent"
+        app:tint="#B9000000"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvMonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filterButton"
+        android:gravity="center"
+        android:text="@string/placeHolder"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMonth"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:justificationMode="inter_word"
+        android:lineSpacingMultiplier="1.1"
+        android:text="@string/empty_list_message"
+        android:textColor="#B9000000"
+        android:textSize="18sp" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todoListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="45dp"
-        android:id="@+id/todoListRecyclerView"
+        android:layout_below="@+id/tvMonth"
+        android:layout_marginVertical="10dp"
         android:backgroundTint="@color/design_default_color_background" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -26,6 +62,7 @@
         android:padding="5dp"
         android:layout_margin="20dp"
         app:icon="@drawable/ic_baseline_add_24"
-        app:iconTint="?colorOnPrimary" />
+        app:iconTint="?colorOnPrimary"
+        />
 
 </RelativeLayout>

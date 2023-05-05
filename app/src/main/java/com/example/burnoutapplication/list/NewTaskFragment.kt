@@ -10,6 +10,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentNewTaskBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
     private lateinit var binding: FragmentNewTaskBinding
@@ -34,7 +36,7 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
 
         if (taskItem != null)
         {
-            binding.tvTitle.text = "Edit Task"
+            binding.tvTitle.text = "Редактировать дело"
             binding.deleteButton.visibility = View.VISIBLE
             val editable = Editable.Factory.getInstance()
             binding.name.text = editable.newEditable(taskItem!!.name)
@@ -42,7 +44,7 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
         else
         {
             binding.deleteButton.visibility = View.GONE
-            binding.tvTitle.text = "New Task"
+            binding.tvTitle.text = "Новое дело"
         }
 
         binding.saveButton.setOnClickListener {
@@ -63,7 +65,7 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
 
         if(taskItem == null)
         {
-            val newTask = TaskItem(name,null)
+            val newTask = TaskItem(name, DateTimeFormatter.ISO_DATE.format(LocalDate.now()))
             taskViewModel.addTaskItem(newTask)
         }
         else
