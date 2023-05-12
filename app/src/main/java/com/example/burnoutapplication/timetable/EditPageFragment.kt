@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentEditPageBinding
@@ -22,9 +23,7 @@ private const val NUM = "num"
 class EditPageFragment : Fragment(), TimetableCardClickListener {
 
     private lateinit var binding: FragmentEditPageBinding
-    private val timetableViewModel: TimetableViewModel by viewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
-    }
+    private lateinit var timetableViewModel: TimetableViewModel
     private var pageNumber:Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +36,9 @@ class EditPageFragment : Fragment(), TimetableCardClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEditPageBinding.inflate(layoutInflater)
+
+        val activity = requireActivity()
+        timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
 
         setRecyclerView()
 
@@ -125,7 +127,7 @@ class EditPageFragment : Fragment(), TimetableCardClickListener {
 
             when (item!!.itemId) {
                 R.id.copy -> {
-                    SelectionForCopyFragment(timetableItem).show(
+                    SelectionForCopyFragment(timetableItem,null).show(
                         parentFragmentManager,
                         "newCopyFragmentTag"
                     )

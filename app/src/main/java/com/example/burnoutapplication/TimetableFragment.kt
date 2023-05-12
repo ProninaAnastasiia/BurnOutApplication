@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
@@ -26,7 +27,7 @@ import java.util.*
 
 class TimetableFragment : Fragment() {
     private lateinit var binding: FragmentTimetableBinding
-    private val timetableViewModel: TimetableViewModel by viewModels {
+    private val timetableViewModel: TimetableViewModel by activityViewModels {
         TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
     }
 
@@ -66,7 +67,7 @@ class TimetableFragment : Fragment() {
         for (i in timetableItems) {
             if (i.dayOfWeek() == day) {
                 filtered.add(i)
-                setAlarm(requireActivity(), count,i)
+                if(isAdded) setAlarm(requireActivity(), count,i)
                 count++
             }
         }

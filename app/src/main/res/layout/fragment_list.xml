@@ -53,7 +53,6 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Task"
         android:id="@+id/newTaskButton"
         android:backgroundTint="@color/purple_200"
         android:textColor="?colorOnPrimary"

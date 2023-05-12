@@ -7,15 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentSelectionForCopyBinding
 import com.example.burnoutapplication.list.TodoApplication
 
-class SelectionForCopyFragment (var timetableItem: TimetableItem) : DialogFragment() {
+class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val dayOfWeek: String?) : DialogFragment() {
     private lateinit var binding: FragmentSelectionForCopyBinding
-    private val timetableViewModel: TimetableViewModel by viewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
-    }
+    private lateinit var timetableViewModel:TimetableViewModel
 
     override fun onStart() {
         super.onStart()
@@ -31,14 +30,26 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem) : DialogFragme
 
         binding = FragmentSelectionForCopyBinding.inflate(inflater,container,false)
 
-        binding.saveButton.setOnClickListener {
-            saveAction()
+        val activity = requireActivity()
+        timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
+
+        if (timetableItem != null)
+        {
+            binding.saveButton.setOnClickListener {
+                copyOneItem()
+            }
+        }
+        else
+        {
+            binding.saveButton.setOnClickListener {
+                copyManyItems()
+            }
         }
 
         return binding.root
     }
 
-    private fun saveAction() {
+    private fun copyManyItems() {
         val daysMap = mapOf(
             "Monday" to binding.chMon.isChecked, "Tuesday" to binding.chTue.isChecked,
             "Wednesday" to binding.chWen.isChecked, "Thursday" to binding.chThu.isChecked,
@@ -47,7 +58,21 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem) : DialogFragme
 
         for(i in daysMap){
             if(i.value) {
-                timetableViewModel.copyTimetableItem(timetableItem, i.key)}
+                timetableViewModel.copyTimetable(dayOfWeek!!, i.key)}
+        }
+        dismiss()
+    }
+
+    private fun copyOneItem() {
+        val daysMap = mapOf(
+            "Monday" to binding.chMon.isChecked, "Tuesday" to binding.chTue.isChecked,
+            "Wednesday" to binding.chWen.isChecked, "Thursday" to binding.chThu.isChecked,
+            "Friday" to binding.chFri.isChecked, "Saturday" to binding.chSat.isChecked,
+            "Sunday" to binding.chSun.isChecked,)
+
+        for(i in daysMap){
+            if(i.value) {
+                timetableViewModel.copyTimetableItem(timetableItem!!, i.key)}
         }
         dismiss()
     }

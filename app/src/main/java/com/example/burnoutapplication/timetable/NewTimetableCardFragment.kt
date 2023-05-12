@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentNewTimetableCardBinding
 import com.example.burnoutapplication.list.TodoApplication
@@ -17,9 +18,7 @@ import java.time.LocalTime
 
 class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val dayOfWeek: DayOfWeek) : DialogFragment() {
     private lateinit var binding: FragmentNewTimetableCardBinding
-    private val timetableViewModel: TimetableViewModel by viewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
-    }
+    private lateinit var timetableViewModel:TimetableViewModel
     private var startTime: LocalTime? = LocalTime.of(12,0)
     private var endTime: LocalTime? = LocalTime.of(13,0)
 
@@ -36,6 +35,9 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = FragmentNewTimetableCardBinding.inflate(inflater,container,false)
+
+        val activity = requireActivity()
+        timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
 
         if (timetableItem != null)
         {

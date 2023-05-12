@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentEditTimetableBinding
@@ -20,15 +21,16 @@ import java.util.*
 
 class EditTimetableFragment : Fragment() {
     private lateinit var binding: FragmentEditTimetableBinding
-    private val timetableViewModel: TimetableViewModel by viewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
-    }
+    private lateinit var timetableViewModel: TimetableViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEditTimetableBinding.inflate(layoutInflater)
+
+        val activity = requireActivity()
+        timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
 
         binding.viewPager.adapter = EditPagerAdapter(requireActivity())
         TabLayoutMediator(binding.tabLayout, binding.viewPager){
@@ -56,9 +58,10 @@ class EditTimetableFragment : Fragment() {
         popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.copy -> {
-                    val alertDialog = CopyChoiceDialog(requireActivity(), whatDay())
-                    alertDialog.isCancelable = false
-                    alertDialog.show(parentFragmentManager, "singleChoiceDialog")
+                    SelectionForCopyFragment(null, whatDay()).show(
+                        parentFragmentManager,
+                        "newCopyFragmentTag"
+                    )
                 }
                 R.id.delete -> {
                     timetableViewModel.deleteTimetable(whatDay())

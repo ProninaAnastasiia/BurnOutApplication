@@ -39,10 +39,9 @@ class ListFragment : Fragment(), TaskItemClickListener {
             showPopup(binding.filterButton)
         }
 
-        binding.tvMonth.text = "Список дел за " + SimpleDateFormat("LLLL", Locale("ru")).format(Date())
+        binding.tvMonth.text = "Список выполненных дел"
 
         setRecyclerView(0)
-
 
         return binding.root
     }
@@ -83,15 +82,19 @@ class ListFragment : Fragment(), TaskItemClickListener {
             when (item!!.itemId) {
                 R.id.today -> {
                     setRecyclerView(1)
+                    binding.tvMonth.text = "Список дел за сегодня"
                 }
                 R.id.week -> {
                     setRecyclerView(2)
+                    binding.tvMonth.text = "Список дел за неделю"
                 }
                 R.id.month -> {
                     setRecyclerView(3)
+                    binding.tvMonth.text = "Список дел за " + SimpleDateFormat("LLLL", Locale("ru")).format(Date())
                 }
                 R.id.allTime -> {
                     setRecyclerView(0)
+                    binding.tvMonth.text = "Список дел за всё время"
                 }
             }
             true
