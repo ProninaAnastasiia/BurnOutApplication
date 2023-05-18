@@ -1,59 +1,127 @@
 package com.example.burnoutapplication
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MoodFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MoodFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.burnoutapplication.databinding.FragmentMoodBinding
+import com.example.burnoutapplication.list.TodoApplication
+import com.example.burnoutapplication.mood.*
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
+// TODO: Довести до ума отображение графика и как в расписании и списке дел придумать, что отобразить пока данных нет
+class MoodFragment : Fragment(), MoodItemClickListener {
+    private lateinit var binding: FragmentMoodBinding
+    lateinit var arrayList: ArrayList<Entry>
+    private val moodViewModel: MoodViewModel by activityViewModels {
+        MoodItemModelFactory((requireActivity().application as TodoApplication).repository3)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mood, container, false)
+    ): View {
+        binding = FragmentMoodBinding.inflate(layoutInflater)
+
+        binding.addMoodButton.setOnClickListener{
+            NewMoodCardFragment().show(parentFragmentManager, "newMoodTag")
+        }
+
+        setRecyclerView()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoodFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoodFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setRecyclerView()
+    {
+        val fragment = this
+        arrayList = ArrayList()
+        val chart = binding.lineChart
+        moodViewModel.moodItems.observe(activity as LifecycleOwner){
+            binding.moodRecyclerView.apply {
+                if(isAdded) layoutManager = LinearLayoutManager(requireActivity())
+                adapter = MoodItemAdapter(it, fragment)
             }
+            val sort1 = it.groupBy({it.dateAddedString}) {it.mark}
+
+            for(i in sort1){
+                val y = i.value.sum()/i.value.size.toDouble()
+                val date = LocalDate.parse(i.key, DateTimeFormatter.ofPattern("dd MMM yyyy").withLocale(
+                    Locale("ru")
+                ))
+                val selectedDateToLong = date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+
+                arrayList.add(Entry(selectedDateToLong.toFloat(), y.toFloat()))
+
+            }
+            notifyDataSetChanged(chart,arrayList)
+        }
+
     }
+
+    private fun notifyDataSetChanged(
+        chart: LineChart, values: List<Entry?>?
+    ) {
+        chart.xAxis.valueFormatter = MyXAxisFormatter()
+        chart.invalidate()
+        setChartData(chart, values!!)
+    }
+
+    private fun setChartData(chart: LineChart, values: List<Entry?>) {
+        val xAxis = chart.xAxis
+        xAxis.setLabelCount(values.count() + 1, true)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        chart.description.isEnabled=false
+        xAxis.isEnabled = true
+        xAxis.setDrawAxisLine(false)
+        xAxis.setDrawGridLines(false)
+        val leftAxis = chart.axisLeft
+        leftAxis.setDrawLabels(false)
+        val lineDataSet: LineDataSet
+        if (chart.data != null && chart.data.dataSetCount > 0) {
+            lineDataSet = chart.data.getDataSetByIndex(0) as LineDataSet
+            lineDataSet.values = values
+            chart.data.notifyDataChanged()
+            chart.notifyDataSetChanged()
+        } else {
+            lineDataSet = LineDataSet(values, "")
+            lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+            lineDataSet.setDrawCircles(false)
+            lineDataSet.setDrawValues(false)
+            val data = LineData(lineDataSet)
+            chart.data = data
+            chart.invalidate()
+        }
+    }
+
+    class MyXAxisFormatter : ValueFormatter() {
+        override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+            val format = SimpleDateFormat("dd LLLL", Locale("ru"))
+            return format.format(value.toLong())
+        }
+    }
+
+    override fun deleteMoodItem(moodItem: MoodItem)
+    {
+        AlertDialog.Builder(requireActivity())
+            .setTitle("Удалить данное состояние?")
+            .setPositiveButton("Да") { dialog, which -> moodViewModel.deleteMoodItem(moodItem) }
+            .setNegativeButton("Нет") { dialog, which -> dialog.dismiss() }
+            .show()
+    }
+
 }

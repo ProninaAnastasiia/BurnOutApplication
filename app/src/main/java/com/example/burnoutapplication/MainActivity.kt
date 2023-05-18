@@ -21,14 +21,11 @@ class MainActivity : AppCompatActivity() {
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-           // TransitionManager.beginDelayedTransition(bottomNavigationView, Fade())  bottomNavigation пропадает не мгновенно
             when (destination.id) {
-                R.id.moodFragment -> bottomNavigationView.visibility = View.VISIBLE
-                R.id.mainFragment -> bottomNavigationView.visibility = View.VISIBLE
-                R.id.timetableFragment -> bottomNavigationView.visibility = View.VISIBLE
-                R.id.listFragment -> bottomNavigationView.visibility = View.VISIBLE
+                R.id.testFragment -> bottomNavigationView.visibility = View.GONE
+                R.id.resultFragment -> bottomNavigationView.visibility = View.GONE
                 else -> {
-                    bottomNavigationView.visibility = View.GONE
+                    bottomNavigationView.visibility = View.VISIBLE
                 }
             }
 

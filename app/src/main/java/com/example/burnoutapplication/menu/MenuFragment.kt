@@ -1,4 +1,4 @@
-package com.example.burnoutapplication
+package com.example.burnoutapplication.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
-
+import com.example.burnoutapplication.R
+// TODO: Доделать меню, кроме теста пока ничего больше нет
 class MenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

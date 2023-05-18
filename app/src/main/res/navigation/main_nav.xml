@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.burnoutapplication.MenuFragment"
+        android:name="com.example.burnoutapplication.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action

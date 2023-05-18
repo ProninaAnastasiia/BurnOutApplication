@@ -11,15 +11,16 @@ import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.burnoutapplication.databinding.FragmentMainBinding
 import com.example.burnoutapplication.list.NewTaskFragment
+import com.example.burnoutapplication.mood.NewMoodCardFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+// TODO: Реализовать появление полезных подсказок (при нажатии на смайлик)
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(layoutInflater)
 
         binding.menuButton.setOnClickListener {
@@ -27,7 +28,11 @@ class MainFragment : Fragment() {
         }
 
         binding.addTaskButton.setOnClickListener{
-            NewTaskFragment(null).show(childFragmentManager, "newTaskTag")
+            NewTaskFragment(null).show(parentFragmentManager, "newTaskTag")
+        }
+
+        binding.addMoodButton.setOnClickListener{
+            NewMoodCardFragment().show(parentFragmentManager, "newMoodTag")
         }
 
         return binding.root

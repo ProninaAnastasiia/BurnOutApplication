@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".mood.NewMoodCardFragment">
+
+    <TextView
+        android:id="@+id/taskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Оценить состояние сейчас"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_not_bad"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodNotBad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Удовлетворительно"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_tired"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodTired"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Апатично, устало"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_unbearable"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodUnbearable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Невыносимо"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_guilty"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodGuilty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Виновато"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_anxious"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodAnxious"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Тревожно"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_angry"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodAngry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Раздраженно"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_calm"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodCalm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Спокойно"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_fine"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            tools:ignore="ContentDescription" />
+
+        <CheckBox
+            android:id="@+id/moodFine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:paddingLeft="10dp"
+            android:layoutDirection="rtl"
+            android:layout_gravity="center"
+            android:text="Всё в порядке"
+            android:textSize="18sp">
+        </CheckBox>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="@color/purple_200"
+        android:textColor="?colorOnPrimary"
+        android:padding="10dp"
+        android:text="Оценить" />
+
+</LinearLayout>

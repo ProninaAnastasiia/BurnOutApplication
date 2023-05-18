@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.burnoutapplication.mood.MoodItem
+import com.example.burnoutapplication.mood.MoodItemDao
 import com.example.burnoutapplication.timetable.TimetableItem
 import com.example.burnoutapplication.timetable.TimetableItemDao
-
-@Database(entities = [TaskItem::class, TimetableItem::class], version = 1, exportSchema = false)
+// TODO: Решить что-то с базой данных, почему она лежит в папке списка дел и называется TaskItemDatabase, если в ней не только TaskItem`ы
+@Database(entities = [TaskItem::class, TimetableItem::class, MoodItem::class], version = 1, exportSchema = false)
 public abstract class TaskItemDatabase : RoomDatabase()
 {
     abstract fun taskItemDao(): TaskItemDao
     abstract fun timetableItemDao(): TimetableItemDao
+    abstract fun moodItemDao(): MoodItemDao
 
     companion object
     {
