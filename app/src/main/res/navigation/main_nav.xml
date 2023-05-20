@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.burnoutapplication.MainFragment"
+        android:name="com.diploma.burnoutapplication.MainFragment"
         android:label="Главная"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/moodFragment"
-        android:name="com.example.burnoutapplication.MoodFragment"
+        android:name="com.diploma.burnoutapplication.MoodFragment"
         android:label="Настроение"
         tools:layout="@layout/fragment_mood" />
     <fragment
         android:id="@+id/timetableFragment"
-        android:name="com.example.burnoutapplication.TimetableFragment"
+        android:name="com.diploma.burnoutapplication.TimetableFragment"
         android:label="Расписание"
         tools:layout="@layout/fragment_timetable" >
         <action
@@ -30,12 +30,12 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.burnoutapplication.ListFragment"
+        android:name="com.diploma.burnoutapplication.ListFragment"
         android:label="Список дел"
         tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/tutorialFragment"
-        android:name="com.example.burnoutapplication.menu.TutorialFragment"
+        android:name="com.diploma.burnoutapplication.menu.TutorialFragment"
         android:label="fragment_tutorial"
         tools:layout="@layout/fragment_tutorial" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.burnoutapplication.menu.AboutFragment"
+        android:name="com.diploma.burnoutapplication.menu.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.burnoutapplication.menu.MenuFragment"
+        android:name="com.diploma.burnoutapplication.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/refFragment"
-        android:name="com.example.burnoutapplication.menu.RefFragment"
+        android:name="com.diploma.burnoutapplication.menu.RefFragment"
         android:label="fragment_ref"
         tools:layout="@layout/fragment_ref" >
         <action
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.burnoutapplication.menu.SettingsFragment"
+        android:name="com.diploma.burnoutapplication.menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -95,7 +95,7 @@
     </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="com.example.burnoutapplication.test.TestFragment"
+        android:name="com.diploma.burnoutapplication.test.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" >
         <action
@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.burnoutapplication.test.ResultFragment"
+        android:name="com.diploma.burnoutapplication.test.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <action
@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/editTimetableFragment"
-        android:name="com.example.burnoutapplication.timetable.EditTimetableFragment"
+        android:name="com.diploma.burnoutapplication.timetable.EditTimetableFragment"
         android:label="fragment_edit_timetable"
         tools:layout="@layout/fragment_edit_timetable" >
         <action
