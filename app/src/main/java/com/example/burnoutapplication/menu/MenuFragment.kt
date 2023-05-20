@@ -9,37 +9,40 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import com.example.burnoutapplication.R
+import com.example.burnoutapplication.databinding.FragmentAboutBinding
+import com.example.burnoutapplication.databinding.FragmentMenuBinding
+
 // TODO: Доделать меню, кроме теста пока ничего больше нет
 class MenuFragment : Fragment() {
+    private var _binding: FragmentMenuBinding?= null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_menu, container, false)
-        val backBtn = view.findViewById<ImageButton>(R.id.backBtn)
-        backBtn.setOnClickListener {
+    ): View {
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        binding.backBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_mainFragment)
         }
-        val settingsBtn = view.findViewById<Button>(R.id.settingsBtn)
-        settingsBtn.setOnClickListener {
+        binding.settingsBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
         }
-        val aboutBtn = view.findViewById<Button>(R.id.aboutBtn)
-        aboutBtn.setOnClickListener {
+        binding.aboutBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_aboutFragment)
         }
-        val testBtn = view.findViewById<Button>(R.id.testBtn)
-        testBtn.setOnClickListener {
+        binding.testBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_testFragment)
         }
-        val tutorialBtn = view.findViewById<Button>(R.id.tutorialBtn)
-        tutorialBtn.setOnClickListener {
+        binding.tutorialBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_tutorialFragment)
         }
-        val refBtn = view.findViewById<Button>(R.id.refBtn)
-        refBtn.setOnClickListener {
+        binding.refBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_refFragment)
         }
-        return view
+        return binding.root
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

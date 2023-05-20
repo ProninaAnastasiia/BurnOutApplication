@@ -13,13 +13,15 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.burnoutapplication.R
 import com.example.burnoutapplication.databinding.FragmentTestBinding
+import org.json.JSONArray
+import org.json.JSONObject
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class TestFragment : Fragment() {
-
-    private lateinit var binding: FragmentTestBinding
+    private var _binding: FragmentTestBinding?= null
+    private val binding get() = _binding!!
     private var mCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question>? = null
     private var answers = ArrayList<String>()
@@ -32,13 +34,11 @@ class TestFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        //val view = inflater.inflate(R.layout.fragment_test, container, false)
-        binding = FragmentTestBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentTestBinding.inflate(inflater, container, false)
 
-        mQuestionsList = Constants.getQuestions()
+        mQuestionsList = getQuestions()
 
-       // val menuBtn = view.findViewById<ImageButton>(R.id.menuBtn)
         binding.menuBtn.setOnClickListener {
             findNavController().navigate(R.id.action_testFragment_to_menuFragment)
         }
@@ -48,9 +48,7 @@ class TestFragment : Fragment() {
         setQuestion()
 
         binding.submitBtn.setOnClickListener{
-
             val checkedRadioButtonId = binding.radioGroup.checkedRadioButtonId
-
             val selectedRadioButton = binding.root.findViewById<RadioButton>(checkedRadioButtonId)
 
             when(checkedRadioButtonId){
@@ -58,7 +56,6 @@ class TestFragment : Fragment() {
                     Toast.makeText(requireView().context,"Please, select answer", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    // Найдём переключатель по его id
                     answers.add(mCurrentPosition-1, selectedRadioButton.text.toString())
                     mCurrentPosition++
 
@@ -70,11 +67,10 @@ class TestFragment : Fragment() {
                             testResult(answers)
                             Log.i("TAG", answersNum.toString())
 
-                            setFragmentResult("requestKey", bundleOf("indexBurnout" to indexBurnout,
+                            setFragmentResult("resultData", bundleOf("indexBurnout" to indexBurnout,
                                 "profReduction" to profReduction, "emotionalExhaustion" to emotionalExhaustion, "depersonalization" to depersonalization))
 
                             findNavController().navigate(R.id.action_testFragment_to_resultFragment)
-
                         }
                     }
                     Log.i("TAG", answers.toString())
@@ -94,8 +90,7 @@ class TestFragment : Fragment() {
                 binding.backBtn.isEnabled = false
             }
 
-            val question = mQuestionsList!![mCurrentPosition - 1] // Getting the question from the list with the help of current position.
-
+            val question = mQuestionsList!![mCurrentPosition - 1]
 
             binding.progressBar.progress = mCurrentPosition
 
@@ -109,7 +104,7 @@ class TestFragment : Fragment() {
 
     private fun setQuestion() {
 
-        val question = mQuestionsList!![mCurrentPosition - 1] // Getting the question from the list with the help of current position.
+        val question = mQuestionsList!![mCurrentPosition - 1]
 
         if (mCurrentPosition == mQuestionsList!!.size) {
             binding.submitBtn.text = "Результат"
@@ -125,10 +120,6 @@ class TestFragment : Fragment() {
     }
 
     private fun testResult(answers: ArrayList<String>) {
-        /*var answersNum = ArrayList<Int>()
-        var emotionalExhaustion: Int
-        var depersonalization: Int
-        var profReduction: Int*/
 
         answers.forEach{
             when (it) {
@@ -142,23 +133,37 @@ class TestFragment : Fragment() {
             }
         }
 
-        /*emotionalExhaustion = answersNum[0] + answersNum[1] + answersNum[2] + answersNum[5] + answersNum[7] + answersNum[12] + answersNum[13] + answersNum[15] + answersNum[19]
+        emotionalExhaustion = answersNum[0] + answersNum[1] + answersNum[2] + answersNum[5] + answersNum[7] + answersNum[12] + answersNum[13] + answersNum[15] + answersNum[19]
         depersonalization = answersNum[4] + answersNum[9] + answersNum[10] + answersNum[14] + answersNum[21]
         profReduction = answersNum[3] + answersNum[6] + answersNum[8] + answersNum[11] + answersNum[16] + answersNum[17] + answersNum[18] + answersNum[20]
-*/
-        /*emotionalExhaustion = answersNum[0] + answersNum[2]
-        depersonalization = answersNum[3] + answersNum[1]
-        profReduction = answersNum[4]*/
-
-        emotionalExhaustion = 17
-        depersonalization = 6
-        profReduction = 30
-
         indexBurnout = roundOffDecimal(sqrt((((0-emotionalExhaustion.toDouble())/54).pow(2.0) + ((0-depersonalization.toDouble())/30).pow(2.0) + ((48-profReduction.toDouble())/48).pow(2.0))/3))
+    }
+
+    private fun getQuestions(): ArrayList<Question>{
+        val list = ArrayList<Question>()
+
+        val jsonData = resources.openRawResource(R.raw.questions).bufferedReader().use{it.readText()}
+
+        val jsonStr = JSONObject(jsonData)
+
+        val questions = jsonStr.getJSONArray("questions") as JSONArray
+
+        for(i in 0 until questions.length()){
+            val id = questions.getJSONObject(i).getInt("questionId")
+            val text = questions.getJSONObject(i).getString("text")
+            list.add(Question(id,text))
+        }
+
+        return list
     }
 
     private fun roundOffDecimal(number: Double): Double {
         return (number * 100).roundToInt().toDouble() / 100
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

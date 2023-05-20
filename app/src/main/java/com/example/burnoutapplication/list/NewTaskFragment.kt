@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.burnoutapplication.databinding.FragmentNewTaskBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
-    private lateinit var binding: FragmentNewTaskBinding
-    //private lateinit var taskViewModel: TaskViewModel     //Изменено, потому что иначе с главного экрана фрагмент не открывался
+    private var _binding: FragmentNewTaskBinding? = null
+    private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by viewModels {
         TaskItemModelFactory((requireActivity().application as TodoApplication).repository)
     }
@@ -29,12 +28,9 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        binding = FragmentNewTaskBinding.inflate(inflater,container,false)
-
-        /*val activity = requireActivity()
-        taskViewModel = ViewModelProvider(activity)[TaskViewModel::class.java]*/
+        _binding = FragmentNewTaskBinding.inflate(inflater,container,false)
 
         if (taskItem != null)
         {
@@ -77,6 +73,11 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
             taskViewModel.updateTaskItem(taskItem!!)
         }
         dismiss()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

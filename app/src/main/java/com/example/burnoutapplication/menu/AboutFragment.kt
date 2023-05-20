@@ -8,18 +8,27 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import com.example.burnoutapplication.R
+import com.example.burnoutapplication.databinding.FragmentAboutBinding
+import com.example.burnoutapplication.databinding.FragmentTestBinding
 
 class AboutFragment : Fragment() {
+    private var _binding: FragmentAboutBinding?= null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_about, container, false)
-        val backBtn = view.findViewById<ImageButton>(R.id.backBtn)
-        backBtn.setOnClickListener {
+    ): View {
+        _binding = FragmentAboutBinding.inflate(inflater, container, false)
+
+        binding.backBtn.setOnClickListener {
             findNavController().navigate(R.id.action_aboutFragment_to_menuFragment)
         }
 
-        return view
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

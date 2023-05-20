@@ -15,17 +15,15 @@ import com.example.burnoutapplication.databinding.FragmentResultBinding
 
 
 class ResultFragment : Fragment() {
-    private lateinit var binding: FragmentResultBinding
-
+    private var _binding: FragmentResultBinding?= null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        //val view = inflater.inflate(R.layout.fragment_result, container, false)
+    ): View {
+        _binding = FragmentResultBinding.inflate(inflater, container, false)
 
-        binding = FragmentResultBinding.inflate(layoutInflater)
-
-        setFragmentResultListener("requestKey") { requestKey, bundle ->
+        setFragmentResultListener("resultData") { _, bundle ->
             val emotionalExhaustion = bundle.getInt("emotionalExhaustion")
             val depersonalization = bundle.getInt("depersonalization")
             val profReduction = bundle.getInt("profReduction")
@@ -98,6 +96,11 @@ class ResultFragment : Fragment() {
                 show()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

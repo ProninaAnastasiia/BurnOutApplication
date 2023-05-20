@@ -20,7 +20,8 @@ import java.time.temporal.ChronoUnit
 import java.util.*
 
 class ListFragment : Fragment(), TaskItemClickListener {
-    private lateinit var binding: FragmentListBinding
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by activityViewModels {
         TaskItemModelFactory((requireActivity().application as TodoApplication).repository)
     }
@@ -29,7 +30,7 @@ class ListFragment : Fragment(), TaskItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentListBinding.inflate(layoutInflater)
+        _binding = FragmentListBinding.inflate(inflater, container, false)
 
         binding.newTaskButton.setOnClickListener {
             NewTaskFragment(null).show(parentFragmentManager, "newTaskTag")
@@ -49,7 +50,7 @@ class ListFragment : Fragment(), TaskItemClickListener {
     private fun setRecyclerView(filter: Int)
     {
         val fragment = this
-        taskViewModel.taskItems.observe(activity as LifecycleOwner){
+        taskViewModel.taskItems.observe(viewLifecycleOwner){
             binding.todoListRecyclerView.apply {
                 if(isAdded) layoutManager = LinearLayoutManager(requireActivity())
                 adapter = TaskItemAdapter(it.filterList(it as MutableList<TaskItem>,filter), fragment)
@@ -132,6 +133,11 @@ class ListFragment : Fragment(), TaskItemClickListener {
             }
         }
         return filtered
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

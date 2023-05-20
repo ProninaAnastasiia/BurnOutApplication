@@ -20,14 +20,15 @@ import java.util.*
 
 
 class EditTimetableFragment : Fragment() {
-    private lateinit var binding: FragmentEditTimetableBinding
+    private var _binding: FragmentEditTimetableBinding?= null
+    private val binding get() = _binding!!
     private lateinit var timetableViewModel: TimetableViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEditTimetableBinding.inflate(layoutInflater)
+        _binding = FragmentEditTimetableBinding.inflate(layoutInflater)
 
         val activity = requireActivity()
         timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
@@ -97,4 +98,10 @@ class EditTimetableFragment : Fragment() {
             else -> "Sunday"
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

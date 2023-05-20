@@ -17,7 +17,8 @@ import java.time.DayOfWeek
 import java.time.LocalTime
 
 class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val dayOfWeek: DayOfWeek) : DialogFragment() {
-    private lateinit var binding: FragmentNewTimetableCardBinding
+    private var _binding: FragmentNewTimetableCardBinding?= null
+    private val binding get() = _binding!!
     private lateinit var timetableViewModel:TimetableViewModel
     private var startTime: LocalTime? = LocalTime.of(12,0)
     private var endTime: LocalTime? = LocalTime.of(13,0)
@@ -34,7 +35,7 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        binding = FragmentNewTimetableCardBinding.inflate(inflater,container,false)
+        _binding = FragmentNewTimetableCardBinding.inflate(inflater,container,false)
 
         val activity = requireActivity()
         timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
@@ -125,6 +126,11 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
             timetableViewModel.updateTimetableItem(timetableItem!!)
         }
         dismiss()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

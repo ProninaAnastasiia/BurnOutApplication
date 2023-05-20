@@ -12,7 +12,7 @@ class TaskItemAdapter( private val taskItems: List<TaskItem>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemViewHolder {
         val itemView = LayoutInflater.from(parent.context)
         val binding = TaskItemCardBinding.inflate(itemView, parent, false)
-        return TaskItemViewHolder(parent.context, binding, clickListener)
+        return TaskItemViewHolder(binding, clickListener)
     }
 
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {

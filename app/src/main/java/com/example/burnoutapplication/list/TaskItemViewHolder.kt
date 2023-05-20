@@ -1,11 +1,9 @@
 package com.example.burnoutapplication.list
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.example.burnoutapplication.databinding.TaskItemCardBinding
 
 class TaskItemViewHolder(
-    private val context: Context,
     private val binding: TaskItemCardBinding,
     private val clickListener: TaskItemClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -14,7 +12,7 @@ class TaskItemViewHolder(
         binding.name.text = taskItem.name
 
         binding.completeButton.setImageResource(taskItem.imageResource())
-        binding.completeButton.setColorFilter(taskItem.imageColor(context))
+        binding.completeButton.setColorFilter(taskItem.imageColor(binding.root.context))
 
         binding.completeButton.setOnClickListener{
             if(!taskItem.isCompleted) clickListener.completeTaskItem(taskItem)

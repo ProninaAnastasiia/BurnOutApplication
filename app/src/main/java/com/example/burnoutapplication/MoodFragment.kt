@@ -26,7 +26,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 // TODO: Довести до ума отображение графика и как в расписании и списке дел придумать, что отобразить пока данных нет
 class MoodFragment : Fragment(), MoodItemClickListener {
-    private lateinit var binding: FragmentMoodBinding
+    private var _binding: FragmentMoodBinding?= null
+    private val binding get() = _binding!!
     lateinit var arrayList: ArrayList<Entry>
     private val moodViewModel: MoodViewModel by activityViewModels {
         MoodItemModelFactory((requireActivity().application as TodoApplication).repository3)
@@ -35,7 +36,7 @@ class MoodFragment : Fragment(), MoodItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMoodBinding.inflate(layoutInflater)
+        _binding = FragmentMoodBinding.inflate(layoutInflater)
 
         binding.addMoodButton.setOnClickListener{
             NewMoodCardFragment().show(parentFragmentManager, "newMoodTag")
@@ -122,6 +123,11 @@ class MoodFragment : Fragment(), MoodItemClickListener {
             .setPositiveButton("Да") { dialog, which -> moodViewModel.deleteMoodItem(moodItem) }
             .setNegativeButton("Нет") { dialog, which -> dialog.dismiss() }
             .show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

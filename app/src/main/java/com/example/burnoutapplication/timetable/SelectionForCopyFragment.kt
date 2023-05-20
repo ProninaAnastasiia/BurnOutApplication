@@ -13,7 +13,8 @@ import com.example.burnoutapplication.databinding.FragmentSelectionForCopyBindin
 import com.example.burnoutapplication.list.TodoApplication
 
 class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val dayOfWeek: String?) : DialogFragment() {
-    private lateinit var binding: FragmentSelectionForCopyBinding
+    private var _binding: FragmentSelectionForCopyBinding?= null
+    private val binding get() = _binding!!
     private lateinit var timetableViewModel:TimetableViewModel
 
     override fun onStart() {
@@ -28,7 +29,7 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val d
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        binding = FragmentSelectionForCopyBinding.inflate(inflater,container,false)
+        _binding = FragmentSelectionForCopyBinding.inflate(inflater,container,false)
 
         val activity = requireActivity()
         timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
@@ -76,4 +77,10 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val d
         }
         dismiss()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

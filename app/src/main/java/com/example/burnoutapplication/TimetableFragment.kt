@@ -26,7 +26,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TimetableFragment : Fragment() {
-    private lateinit var binding: FragmentTimetableBinding
+    private var _binding: FragmentTimetableBinding?= null
+    private val binding get() = _binding!!
     private val timetableViewModel: TimetableViewModel by activityViewModels {
         TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
     }
@@ -35,7 +36,7 @@ class TimetableFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTimetableBinding.inflate(layoutInflater)
+        _binding = FragmentTimetableBinding.inflate(layoutInflater)
 
         createNotificationChannel()
 
@@ -141,6 +142,11 @@ class TimetableFragment : Fragment() {
             }
         }
         return dayOfWeek
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

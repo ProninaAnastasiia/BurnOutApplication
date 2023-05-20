@@ -15,13 +15,14 @@ import com.example.burnoutapplication.mood.NewMoodCardFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 // TODO: Реализовать появление полезных подсказок (при нажатии на смайлик)
 class MainFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
+    private var _binding: FragmentMainBinding?= null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(layoutInflater)
+        _binding = FragmentMainBinding.inflate(layoutInflater)
 
         binding.menuButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_menuFragment)
@@ -37,4 +38,10 @@ class MainFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

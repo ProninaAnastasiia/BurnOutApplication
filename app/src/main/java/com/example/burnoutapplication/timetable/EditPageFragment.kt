@@ -21,8 +21,8 @@ import java.util.ArrayList
 private const val NUM = "num"
 
 class EditPageFragment : Fragment(), TimetableCardClickListener {
-
-    private lateinit var binding: FragmentEditPageBinding
+    private var _binding: FragmentEditPageBinding?= null
+    private val binding get() = _binding!!
     private lateinit var timetableViewModel: TimetableViewModel
     private var pageNumber:Int=0
 
@@ -35,7 +35,7 @@ class EditPageFragment : Fragment(), TimetableCardClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEditPageBinding.inflate(layoutInflater)
+        _binding = FragmentEditPageBinding.inflate(inflater, container, false)
 
         val activity = requireActivity()
         timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
@@ -141,5 +141,10 @@ class EditPageFragment : Fragment(), TimetableCardClickListener {
         }
 
         popup.show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
