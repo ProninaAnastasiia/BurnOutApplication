@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.diploma.burnoutapplication.databinding.FragmentNewTimetableCardBinding
+import com.diploma.burnoutapplication.list.TaskViewModel
 import java.time.DayOfWeek
 import java.time.LocalTime
 
 class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val dayOfWeek: DayOfWeek) : DialogFragment() {
     private var _binding: FragmentNewTimetableCardBinding?= null
     private val binding get() = _binding!!
-    private lateinit var timetableViewModel:TimetableViewModel
+    private val timetableViewModel: TimetableViewModel by activityViewModels()
     private var startTime: LocalTime? = LocalTime.of(12,0)
     private var endTime: LocalTime? = LocalTime.of(13,0)
 
@@ -32,9 +34,6 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         _binding = FragmentNewTimetableCardBinding.inflate(inflater,container,false)
-
-        val activity = requireActivity()
-        timetableViewModel = ViewModelProvider(activity)[TimetableViewModel::class.java]
 
         if (timetableItem != null)
         {
@@ -115,11 +114,13 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
         }
         else
         {
-            timetableItem!!.name = name
-            timetableItem!!.startTimeString = startTimeString
-            timetableItem!!.endTimeString = endTimeString
-            timetableItem!!.dayOfWeekString = dayOfWeekString
-            timetableViewModel.updateTimetableItem(timetableItem!!)
+            timetableItem?.let {
+                it.name =name
+                it.startTimeString = startTimeString
+                it.endTimeString = endTimeString
+                it.dayOfWeekString = dayOfWeekString
+                timetableViewModel.updateTimetableItem(it)
+            }
         }
         dismiss()
     }

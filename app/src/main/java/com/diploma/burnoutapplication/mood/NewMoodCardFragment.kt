@@ -16,7 +16,7 @@ import java.util.*
 class NewMoodCardFragment : DialogFragment() {
     private lateinit var binding: FragmentNewMoodCardBinding
     private val moodViewModel: MoodViewModel by viewModels {
-        MoodItemModelFactory((requireActivity().application as TodoApplication).repository3)
+        MoodItemModelFactory((requireActivity().application as TodoApplication).repositoryMood)
     }
 
     override fun onStart() {

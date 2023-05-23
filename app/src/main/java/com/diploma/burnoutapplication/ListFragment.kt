@@ -23,7 +23,7 @@ class ListFragment : Fragment(), TaskItemClickListener {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by activityViewModels {
-        TaskItemModelFactory((requireActivity().application as TodoApplication).repository)
+        TaskItemModelFactory((requireActivity().application as TodoApplication).repositoryTask)
     }
 
     override fun onCreateView(

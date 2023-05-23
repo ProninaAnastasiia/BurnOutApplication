@@ -27,7 +27,7 @@ class TimetableFragment : Fragment() {
     private var _binding: FragmentTimetableBinding?= null
     private val binding get() = _binding!!
     private val timetableViewModel: TimetableViewModel by activityViewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repository2)
+        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repositoryTimetable)
     }
 
     override fun onCreateView(

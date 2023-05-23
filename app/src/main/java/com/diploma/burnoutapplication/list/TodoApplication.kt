@@ -6,7 +6,7 @@ import com.diploma.burnoutapplication.timetable.TimetableItemRepository
 
 class TodoApplication : Application() {
     private val database by lazy { TaskItemDatabase.getDatabase(this) }
-    val repository by lazy { TaskItemRepository(database.taskItemDao()) }
-    val repository2 by lazy { TimetableItemRepository(database.timetableItemDao()) }
-    val repository3 by lazy { MoodItemRepository(database.moodItemDao()) }
+    val repositoryTask by lazy { TaskItemRepository(database.taskItemDao()) }
+    val repositoryTimetable by lazy { TimetableItemRepository(database.timetableItemDao()) }
+    val repositoryMood by lazy { MoodItemRepository(database.moodItemDao()) }
 }

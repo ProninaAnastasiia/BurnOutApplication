@@ -15,7 +15,7 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
     private var _binding: FragmentNewTaskBinding? = null
     private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by viewModels {
-        TaskItemModelFactory((requireActivity().application as TodoApplication).repository)
+        TaskItemModelFactory((requireActivity().application as TodoApplication).repositoryTask)
     }
 
     override fun onStart() {
@@ -68,9 +68,10 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
         }
         else
         {
-            taskItem!!.name = name
-
-            taskViewModel.updateTaskItem(taskItem!!)
+            taskItem?.let {
+                it.name = name
+                taskViewModel.updateTaskItem(it)
+            }
         }
         dismiss()
     }

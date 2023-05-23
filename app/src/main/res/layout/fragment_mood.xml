@@ -17,11 +17,120 @@
         android:textColor="@color/black"
         android:gravity="center"/>
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+    <RelativeLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@+id/textView"/>
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_below="@+id/textView">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/moodFine"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/emoji_fine"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodCalm"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodFine"
+                android:src="@drawable/emoji_calm"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodNotBad"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodCalm"
+                android:src="@drawable/emoji_not_bad"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodAngry"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodNotBad"
+                android:src="@drawable/emoji_angry"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodGuilty"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodAngry"
+                android:src="@drawable/emoji_guilty"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodAnxious"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodGuilty"
+                android:src="@drawable/emoji_anxious"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodTired"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodAnxious"
+                android:src="@drawable/emoji_tired"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/moodUnbearable"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/moodTired"
+                android:src="@drawable/emoji_unbearable"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tvHistory"
@@ -29,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/lineChart"
+        android:layout_below="@+id/linearLayout"
         android:gravity="center"
         android:text="История"
         android:textColor="@color/black"

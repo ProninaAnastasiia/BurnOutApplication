@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 import com.diploma.burnoutapplication.R
 
 enum class Mood(val value: Int, val rus: String){
-    Unbearable(1,"Невыносимо"), Angry(2,"Разжраженно"), Anxious(2,"Тревожно"), Guilty(3,"Виновато"),
-    Tired(3,"Апатично, устало"), NotBad(5,"Удовлетворительно"), Calm(8,"Спокойно"), Fine(10,"Всё в порядке")
+    Unbearable(1,"Невыносимо"), Angry(5,"Разжраженно"), Anxious(3,"Тревожно"), Guilty(4,"Виновато"),
+    Tired(2,"Апатично, устало"), NotBad(6,"Удовлетворительно"), Calm(7,"Спокойно"), Fine(8,"Всё в порядке")
 }
 
 @Entity(tableName = "mood_item_table")
