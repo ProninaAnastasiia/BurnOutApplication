@@ -3,6 +3,8 @@ package com.diploma.burnoutapplication
 import android.app.AlertDialog
 import android.graphics.Canvas
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.diploma.burnoutapplication.databinding.FragmentMoodBinding
 import com.diploma.burnoutapplication.list.TodoApplication
 import com.diploma.burnoutapplication.mood.*
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -32,12 +35,12 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
-// TODO: Добавить прокрутку moodRecyclerView до последнего элемента и  как в расписании и списке дел придумать, что отобразить пока данных нет
 class MoodFragment : Fragment(), MoodItemClickListener {
     private var _binding: FragmentMoodBinding?= null
     private val binding get() = _binding!!
-    lateinit var arrayList: ArrayList<Entry>
+    private lateinit var chart: LineChart
+
+    lateinit var mainHandler: Handler
     private val moodViewModel: MoodViewModel by activityViewModels {
         MoodItemModelFactory((requireActivity().application as TodoApplication).repositoryMood)
     }
@@ -46,13 +49,17 @@ class MoodFragment : Fragment(), MoodItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoodBinding.inflate(inflater, container, false)
+        chart = binding.lineChart
 
         binding.addMoodButton.setOnClickListener{
             NewMoodCardFragment().show(parentFragmentManager, "newMoodTag")
         }
 
-        setData()
+        setChartOptions()
+
         setRecyclerView()
+
+        mainHandler = Handler(Looper.getMainLooper())
 
         return binding.root
     }
@@ -64,71 +71,83 @@ class MoodFragment : Fragment(), MoodItemClickListener {
             binding.moodRecyclerView.apply {
                 if(isAdded) layoutManager = LinearLayoutManager(requireActivity())
                 adapter = MoodItemAdapter(it, fragment)
+                binding.moodRecyclerView.scrollToPosition(MoodItemAdapter(it,fragment).itemCount - 1)
+                if (MoodItemAdapter(it, fragment).itemCount!=0) binding.tvMessage.visibility = View.GONE
+                chart.clear()
+                addChartDataSet()
             }
         }
     }
 
-    private fun setData()
-    {
-        arrayList = ArrayList()
+    private fun setChartOptions() {
+        chart.setDrawGridBackground(false)
+        chart.description.isEnabled = false
+        chart.setNoDataText("Данных пока не хватает. Попробуйте добавить текущее настроение")
+        chart.isHighlightPerTapEnabled = false
+        val xAxis = chart.xAxis
+        chart.setScaleEnabled(false)
+        chart.description.isEnabled = false
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawAxisLine(false)
+        xAxis.setDrawGridLines(false)
 
-        val chart = binding.lineChart
+        chart.setXAxisRenderer(
+            CustomXAxisRenderer(
+                chart.viewPortHandler,
+                chart.xAxis,
+                chart.getTransformer(YAxis.AxisDependency.LEFT)
+            )
+        )
+        chart.axisLeft.apply {
+            setDrawLabels(false)
+            axisMinimum = 0f
+            axisMaximum = 8f
+        }
 
-            moodViewModel.moodItems.observe(viewLifecycleOwner){
-                val sort1 = it.groupBy({it.dateAddedString}) {it.mark}
+        chart.axisRight.apply {
+            setDrawAxisLine(false)
+            setDrawGridLines(false)
+            setDrawLabels(false)
+        }
 
-                for(i in sort1){
-                    val y = i.value.sum()/i.value.size.toDouble()
-                    val date = LocalDate.parse(i.key, DateTimeFormatter.ofPattern("dd MMMM yyyy").withLocale(Locale("ru")))
-                    val selectedDateToLong = date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-                    arrayList.add(Entry(selectedDateToLong.toFloat(), y.toFloat()))
-                    val lineDataSet = LineDataSet(arrayList, "")
-                    val data = LineData(lineDataSet)
-                    chart.data = data
-                    chart.data.notifyDataChanged()
-                    chart.notifyDataSetChanged()
+        chart.legend.form = Legend.LegendForm.NONE
 
-                    chart.invalidate()
-                    arrayList.last()?.let { chart.moveViewToX(it.x) }
-                    //chart.moveViewToX(arrayList.last().x)
+        xAxis.valueFormatter = MyXAxisFormatter()
+    }
 
-                    val xAxis = chart.xAxis
-                    chart.setScaleEnabled(false)
-                    chart.description.isEnabled = false
-                    xAxis.position = XAxis.XAxisPosition.BOTTOM
-                    xAxis.setDrawAxisLine(false)
-                    xAxis.setDrawGridLines(false)
+    private fun addChartDataSet() {
+        val data = chart.data
+        if (data == null) {
+            chart.data = LineData()
+        } else {
+            val values = ArrayList<Entry>()
+            moodViewModel.moodItems.observe(viewLifecycleOwner) {
+                val sort1 = it.groupBy({ it.dateAddedString }) { it.mark }
 
-                    xAxis.setLabelCount(7, true)
-
-                    chart.setXAxisRenderer(
-                        CustomXAxisRenderer(
-                            chart.viewPortHandler,
-                            chart.xAxis,
-                            chart.getTransformer(YAxis.AxisDependency.LEFT)
-                        )
+                for(i in sort1) {
+                   val y = i.value.sum() / i.value.size.toDouble()
+                    val date = LocalDate.parse(
+                        i.key,
+                        DateTimeFormatter.ofPattern("dd MMMM yyyy").withLocale(Locale("ru"))
                     )
-                    chart.axisLeft.setDrawLabels(false)
-                    chart.axisLeft.axisMinimum = 0f
-                    chart.axisLeft.axisMaximum = 8f
-
-                    chart.axisRight.setDrawAxisLine(false)
-                    chart.axisRight.setDrawGridLines(false)
-                    chart.axisRight.setDrawLabels(false)
-
-                    chart.legend.form = Legend.LegendForm.NONE
-                    chart.setVisibleXRangeMaximum((86507520*6).toFloat()) // Сколько точек отображается на интерфейсе (другие точки можно увидеть, сдвинув график)
-
-                    val color = ContextCompat.getColor(binding.root.context, R.color.purple_500)
-
-                    lineDataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
-                    lineDataSet.color = color
-                    lineDataSet.setDrawCircles(false)
-                    lineDataSet.setDrawValues(false)
-
-                    xAxis.valueFormatter = MyXAxisFormatter()
+                    val selectedDateToLong = date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+                    values.add(Entry(selectedDateToLong.toFloat(), y.toFloat()))
                 }
             }
+            val set = LineDataSet(values, "")
+            chart.xAxis.setLabelCount(values.size-1, true)
+            val color = ContextCompat.getColor(binding.root.context, R.color.purple_500)
+            set.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+            set.color = color
+            set.setDrawCircles(false)
+            set.setDrawValues(false)
+            data.addDataSet(set)
+            data.notifyDataChanged()
+            chart.notifyDataSetChanged()
+            chart.setVisibleXRangeMaximum((86400000*7).toFloat()) // Сколько точек отображается на интерфейсе (другие точки можно увидеть, сдвинув график)
+            chart.invalidate()
+            chart.moveViewToX(values.last().x)
+        }
 
     }
 
@@ -136,7 +155,7 @@ class MoodFragment : Fragment(), MoodItemClickListener {
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
             val formatDay = SimpleDateFormat("dd")
             val formatMonth = SimpleDateFormat("LLL", Locale("ru"))
-            return "${formatDay.format(value.toLong())}\n${formatMonth.format(value.toLong())}"
+            return "${formatDay.format(value.toLong()+86400000)}\n${formatMonth.format(value.toLong()+86400000)}"
         }
     }
 
@@ -160,18 +179,28 @@ class MoodFragment : Fragment(), MoodItemClickListener {
         }
     }
 
+    private val updateChart = object : Runnable {
+        override fun run() {
+            addChartDataSet()
+            mainHandler.postDelayed(this, 5000)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mainHandler.removeCallbacks(updateChart)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainHandler.post(updateChart)
+    }
+
     override fun deleteMoodItem(moodItem: MoodItem)
     {
         AlertDialog.Builder(requireActivity())
             .setTitle("Удалить данное состояние?")
-            .setPositiveButton("Да") { dialog, which ->
-                val x = moodItem.dateAddedString
-                val date = LocalDate.parse(x, DateTimeFormatter.ofPattern("dd MMMM yyyy").withLocale(Locale("ru")))
-                val selectedDateToLong = date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-                binding.lineChart.data.removeEntry(selectedDateToLong.toFloat(),0)
-                binding.lineChart.data.notifyDataChanged()
-                binding.lineChart.notifyDataSetChanged()
-                moodViewModel.deleteMoodItem(moodItem) }
+            .setPositiveButton("Да") { dialog, which -> moodViewModel.deleteMoodItem(moodItem)}
             .setNegativeButton("Нет") { dialog, which -> dialog.dismiss() }
             .show()
     }

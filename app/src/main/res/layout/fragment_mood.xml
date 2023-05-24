@@ -119,11 +119,11 @@
                 android:id="@+id/moodUnbearable"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_below="@+id/moodTired"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
                 android:cropToPadding="false"
                 android:scaleType="fitXY"
-                android:layout_below="@+id/moodTired"
                 android:src="@drawable/emoji_unbearable"
                 tools:ignore="ContentDescription" />
 
@@ -136,13 +136,26 @@
         android:id="@+id/tvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/linearLayout"
         android:gravity="center"
         android:text="История"
         android:textColor="@color/black"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHistory"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:justificationMode="inter_word"
+        android:lineSpacingMultiplier="1.1"
+        android:text="@string/empty_mood_list_message"
+        android:textColor="#B9000000"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moodRecyclerView"

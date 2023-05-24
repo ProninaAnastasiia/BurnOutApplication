@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_list.xml" value="0.1767983789260385" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_main.xml" value="0.1" />
-        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_mood.xml" value="0.1" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_mood.xml" value="0.25" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_new_mood_card.xml" value="0.17603850050658562" />
         <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/layout/fragment_new_task.xml" value="0.17603850050658562" />
+        <entry key="..\:/NecessaryTrash/NaturalEvil/Diploma/BurnOutApplication/app/src/main/res/xml/root_preferences.xml" value="0.33" />
       </map>
     </option>
   </component>
