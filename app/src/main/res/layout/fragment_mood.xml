@@ -13,7 +13,8 @@
         android:text="Дневник состояния"
         android:textSize="20sp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
         android:gravity="center"/>
 
@@ -150,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvHistory"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:justificationMode="inter_word"
         android:lineSpacingMultiplier="1.1"
         android:text="@string/empty_mood_list_message"

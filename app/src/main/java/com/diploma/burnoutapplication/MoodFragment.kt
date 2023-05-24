@@ -82,7 +82,6 @@ class MoodFragment : Fragment(), MoodItemClickListener {
     private fun setChartOptions() {
         chart.setDrawGridBackground(false)
         chart.description.isEnabled = false
-        chart.setNoDataText("Данных пока не хватает. Попробуйте добавить текущее настроение")
         chart.isHighlightPerTapEnabled = false
         val xAxis = chart.xAxis
         chart.setScaleEnabled(false)
@@ -135,7 +134,6 @@ class MoodFragment : Fragment(), MoodItemClickListener {
                 }
             }
             val set = LineDataSet(values, "")
-            chart.xAxis.setLabelCount(values.size-1, true)
             val color = ContextCompat.getColor(binding.root.context, R.color.purple_500)
             set.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
             set.color = color
@@ -144,9 +142,13 @@ class MoodFragment : Fragment(), MoodItemClickListener {
             data.addDataSet(set)
             data.notifyDataChanged()
             chart.notifyDataSetChanged()
-            chart.setVisibleXRangeMaximum((86400000*7).toFloat()) // Сколько точек отображается на интерфейсе (другие точки можно увидеть, сдвинув график)
+            chart.setVisibleXRangeMaximum((86400000*7).toFloat())
             chart.invalidate()
-            chart.moveViewToX(values.last().x)
+            if(values.size<=7){
+                chart.xAxis.setLabelCount(values.size, true)
+            }
+            else { chart.xAxis.setLabelCount(7, true)
+            chart.moveViewToX(values.last().x)}
         }
 
     }
@@ -155,7 +157,7 @@ class MoodFragment : Fragment(), MoodItemClickListener {
         override fun getAxisLabel(value: Float, axis: AxisBase?): String {
             val formatDay = SimpleDateFormat("dd")
             val formatMonth = SimpleDateFormat("LLL", Locale("ru"))
-            return "${formatDay.format(value.toLong()+86400000)}\n${formatMonth.format(value.toLong()+86400000)}"
+            return "${formatDay.format(value.toLong()+86400000)}\n${formatMonth.format(value.toLong())}"
         }
     }
 
@@ -200,7 +202,7 @@ class MoodFragment : Fragment(), MoodItemClickListener {
     {
         AlertDialog.Builder(requireActivity())
             .setTitle("Удалить данное состояние?")
-            .setPositiveButton("Да") { dialog, which -> moodViewModel.deleteMoodItem(moodItem)}
+            .setPositiveButton("Да") { dialog, which -> moodViewModel.deleteMoodItem(moodItem) }
             .setNegativeButton("Нет") { dialog, which -> dialog.dismiss() }
             .show()
     }
