@@ -60,9 +60,6 @@
             android:id="@+id/action_menuFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
         <action
-            android:id="@+id/action_menuFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_refFragment"
             app:destination="@id/refFragment" />
         <action
@@ -82,15 +79,6 @@
         tools:layout="@layout/fragment_ref" >
         <action
             android:id="@+id/action_refFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.diploma.burnoutapplication.menu.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
     <fragment

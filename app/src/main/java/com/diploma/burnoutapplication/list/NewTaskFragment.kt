@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import com.diploma.burnoutapplication.database.DatabaseApplication
 import com.diploma.burnoutapplication.databinding.FragmentNewTaskBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -15,7 +16,7 @@ class NewTaskFragment(var taskItem: TaskItem?) : DialogFragment() {
     private var _binding: FragmentNewTaskBinding? = null
     private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by viewModels {
-        TaskItemModelFactory((requireActivity().application as TodoApplication).repositoryTask)
+        TaskItemModelFactory((requireActivity().application as DatabaseApplication).repositoryTask)
     }
 
     override fun onStart() {

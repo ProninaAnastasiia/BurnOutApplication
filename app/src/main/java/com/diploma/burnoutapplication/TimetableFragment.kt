@@ -17,7 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diploma.burnoutapplication.databinding.FragmentTimetableBinding
-import com.diploma.burnoutapplication.list.TodoApplication
+import com.diploma.burnoutapplication.database.DatabaseApplication
 import com.diploma.burnoutapplication.timetable.*
 import java.time.DayOfWeek
 import java.time.format.DateTimeFormatter
@@ -27,7 +27,7 @@ class TimetableFragment : Fragment() {
     private var _binding: FragmentTimetableBinding?= null
     private val binding get() = _binding!!
     private val timetableViewModel: TimetableViewModel by activityViewModels {
-        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as TodoApplication).repositoryTimetable)
+        TimetableViewModel.TimetableViewModelFactory((requireActivity().application as DatabaseApplication).repositoryTimetable)
     }
 
     override fun onCreateView(

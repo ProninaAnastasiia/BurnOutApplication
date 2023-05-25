@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diploma.burnoutapplication.databinding.FragmentMoodBinding
-import com.diploma.burnoutapplication.list.TodoApplication
+import com.diploma.burnoutapplication.database.DatabaseApplication
 import com.diploma.burnoutapplication.mood.*
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
@@ -42,7 +42,7 @@ class MoodFragment : Fragment(), MoodItemClickListener {
 
     lateinit var mainHandler: Handler
     private val moodViewModel: MoodViewModel by activityViewModels {
-        MoodItemModelFactory((requireActivity().application as TodoApplication).repositoryMood)
+        MoodItemModelFactory((requireActivity().application as DatabaseApplication).repositoryMood)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

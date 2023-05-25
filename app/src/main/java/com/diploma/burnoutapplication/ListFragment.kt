@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.diploma.burnoutapplication.database.DatabaseApplication
 import com.diploma.burnoutapplication.databinding.FragmentListBinding
 import com.diploma.burnoutapplication.list.*
 import java.time.LocalDate
@@ -23,7 +23,7 @@ class ListFragment : Fragment(), TaskItemClickListener {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val taskViewModel: TaskViewModel by activityViewModels {
-        TaskItemModelFactory((requireActivity().application as TodoApplication).repositoryTask)
+        TaskItemModelFactory((requireActivity().application as DatabaseApplication).repositoryTask)
     }
 
     override fun onCreateView(

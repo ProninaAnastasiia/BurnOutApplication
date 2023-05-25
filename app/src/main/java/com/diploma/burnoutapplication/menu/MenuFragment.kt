@@ -21,9 +21,6 @@ class MenuFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_mainFragment)
         }
-        binding.settingsBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_settingsFragment)
-        }
         binding.aboutBtn.setOnClickListener {
             findNavController().navigate(R.id.action_menuFragment_to_aboutFragment)
         }

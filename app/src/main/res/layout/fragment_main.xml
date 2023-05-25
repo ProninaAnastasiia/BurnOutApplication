@@ -34,21 +34,40 @@
         app:tint="#C9BB86FC"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_text"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="30dp"
         android:padding="25dp"
-        android:textSize="20sp"
-        android:lineSpacingMultiplier="1.1"
-        android:justificationMode="inter_word"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="30dp"
         android:background="@drawable/main_text_bg"
         app:layout_constraintTop_toBottomOf="@+id/affirmationsButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/affirmationsTitle"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_text"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:lineSpacingMultiplier="1.1"
+            android:justificationMode="inter_word"
+            app:layout_constraintTop_toBottomOf="@+id/affirmationsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addTaskButton"
@@ -64,23 +83,24 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toTopOf="@+id/addMoodButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addMoodButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/purple_200"
         android:padding="10dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="40dp"
         android:text="@string/addMoodButton"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTaskButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

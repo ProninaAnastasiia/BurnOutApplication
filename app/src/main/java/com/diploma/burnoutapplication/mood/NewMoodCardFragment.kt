@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.diploma.burnoutapplication.databinding.FragmentNewMoodCardBinding
-import com.diploma.burnoutapplication.list.TodoApplication
+import com.diploma.burnoutapplication.database.DatabaseApplication
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -16,7 +16,7 @@ import java.util.*
 class NewMoodCardFragment : DialogFragment() {
     private lateinit var binding: FragmentNewMoodCardBinding
     private val moodViewModel: MoodViewModel by viewModels {
-        MoodItemModelFactory((requireActivity().application as TodoApplication).repositoryMood)
+        MoodItemModelFactory((requireActivity().application as DatabaseApplication).repositoryMood)
     }
 
     override fun onStart() {
