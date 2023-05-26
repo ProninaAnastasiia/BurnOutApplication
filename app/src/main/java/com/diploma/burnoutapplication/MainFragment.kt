@@ -9,10 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.diploma.burnoutapplication.databinding.FragmentMainBinding
 import com.diploma.burnoutapplication.list.NewTaskFragment
 import com.diploma.burnoutapplication.mood.NewMoodCardFragment
-import com.diploma.burnoutapplication.test.Question
 import org.json.JSONArray
 import org.json.JSONObject
-import kotlin.random.Random
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding?= null

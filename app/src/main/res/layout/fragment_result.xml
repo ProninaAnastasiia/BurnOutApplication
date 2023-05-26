@@ -220,8 +220,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_details"
         android:layout_marginTop="10dp"
-        android:text="Начать бороться с выгоранием"
         android:backgroundTint="@color/purple_200"
+        android:text="Начать бороться с выгоранием"
         android:textSize="18sp" />
 
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.diploma.burnoutapplication.menu
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.diploma.burnoutapplication.R
 import com.diploma.burnoutapplication.databinding.FragmentMenuBinding
 
-// TODO: Доделать меню, кроме теста пока ничего больше нет
 class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding?= null
     private val binding get() = _binding!!
@@ -31,8 +32,12 @@ class MenuFragment : Fragment() {
             findNavController().navigate(R.id.action_menuFragment_to_tutorialFragment)
         }
         binding.refBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_refFragment)
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScpYIDaJW-4lBKQkjXioaxTDGDsOSX_Bnoh-I8TyTE_AEkyCQ/viewform?usp=sf_link"))
+            startActivity(browserIntent)
         }
+
+
+
         return binding.root
     }
     override fun onDestroyView() {

@@ -39,7 +39,8 @@
             android:indeterminate="false"
             android:max="22"
             android:minHeight="50dp"
-            android:progress="0" />
+            android:progress="0"
+            android:indeterminateTint="@color/purple_200"/>
 
         <TextView
             android:id="@+id/textView_progress"
@@ -79,7 +80,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Никогда"
+            android:text="@string/answer1"
             android:gravity="center"/>
 
         <RadioButton
@@ -90,7 +91,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Очень редко"
+            android:text="@string/answer2"
             android:gravity="center"/>
 
         <RadioButton
@@ -101,7 +102,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Редко"
+            android:text="@string/answer3"
             android:gravity="center"/>
 
         <RadioButton
@@ -112,7 +113,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Иногда"
+            android:text="@string/answer4"
             android:gravity="center"/>
 
         <RadioButton
@@ -123,7 +124,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Часто"
+            android:text="@string/answer5"
             android:gravity="center"/>
 
         <RadioButton
@@ -134,7 +135,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Очень часто"
+            android:text="@string/answer6"
             android:gravity="center"/>
 
         <RadioButton
@@ -145,7 +146,7 @@
             android:padding="10dp"
             android:textColor="#7A8089"
             android:textSize="20sp"
-            android:text="Каждый день"
+            android:text="@string/answer7"
             android:gravity="center"/>
     </RadioGroup>
 
@@ -161,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@color/purple_200"
-            android:text="Назад"
+            android:text="@string/backBtn"
             android:textSize="18sp"/>
 
         <Button
@@ -170,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:backgroundTint="@color/purple_200"
-            android:text="Далее"
+            android:text="@string/nextBtn"
             android:textSize="18sp" />
     </LinearLayout>
 

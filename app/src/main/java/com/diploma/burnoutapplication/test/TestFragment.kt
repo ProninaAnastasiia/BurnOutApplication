@@ -53,7 +53,7 @@ class TestFragment : Fragment() {
 
             when(checkedRadioButtonId){
                 -1 -> {
-                    Toast.makeText(requireView().context,"Please, select answer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireView().context,"Пожалуйста, выберите ответ", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     answers.add(mCurrentPosition-1, selectedRadioButton.text.toString())
@@ -65,7 +65,6 @@ class TestFragment : Fragment() {
                         }
                         else -> {
                             testResult(answers)
-                            Log.i("TAG", answersNum.toString())
 
                             setFragmentResult("resultData", bundleOf("indexBurnout" to indexBurnout,
                                 "profReduction" to profReduction, "emotionalExhaustion" to emotionalExhaustion, "depersonalization" to depersonalization))
@@ -73,7 +72,6 @@ class TestFragment : Fragment() {
                             findNavController().navigate(R.id.action_testFragment_to_resultFragment)
                         }
                     }
-                    Log.i("TAG", answers.toString())
                     binding.radioGroup.clearCheck()
                     binding.radioGroup.jumpDrawablesToCurrentState()
                 }

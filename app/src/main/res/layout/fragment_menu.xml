@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="@drawable/my_button_bg"
-        android:text="Подробнее о выгорании"
+        android:text="@string/menuAbout"
         android:textColor="#B9000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -55,7 +55,7 @@
         android:id="@+id/testBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Пройти тест"
+        android:text="@string/menuTest"
         android:textColor="#B9000000"
         android:background="@drawable/my_button_bg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
         android:id="@+id/tutorialBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Показать обучение"
+        android:text="@string/menuTutorial"
         android:textColor="#B9000000"
         android:background="@drawable/my_button_bg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,13 +77,11 @@
         android:id="@+id/refBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="О приложении"
+        android:text="@string/menuReport"
         android:textColor="#B9000000"
         android:background="@drawable/my_button_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tutorialBtn" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

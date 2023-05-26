@@ -33,7 +33,7 @@
         android:layout_marginVertical="20dp"
         android:backgroundTint="@color/purple_200"
         android:padding="10dp"
-        android:text="Добавить пункт расписания"
+        android:text="@string/addTimetableButton"
         android:textColor="?colorOnPrimary" />
 
 </RelativeLayout>

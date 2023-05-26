@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_testFragment"
+            app:destination="@id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/moodFragment"
@@ -41,6 +44,9 @@
         <action
             android:id="@+id/action_tutorialFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_tutorialFragment_to_testFragment"
+            app:destination="@id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -60,9 +66,6 @@
             android:id="@+id/action_menuFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
         <action
-            android:id="@+id/action_menuFragment_to_refFragment"
-            app:destination="@id/refFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_tutorialFragment"
             app:destination="@id/tutorialFragment" />
         <action
@@ -71,15 +74,6 @@
         <action
             android:id="@+id/action_menuFragment_to_testFragment"
             app:destination="@id/testFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/refFragment"
-        android:name="com.diploma.burnoutapplication.menu.RefFragment"
-        android:label="fragment_ref"
-        tools:layout="@layout/fragment_ref" >
-        <action
-            android:id="@+id/action_refFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"
