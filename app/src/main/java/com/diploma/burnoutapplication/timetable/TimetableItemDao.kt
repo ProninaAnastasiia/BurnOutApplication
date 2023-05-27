@@ -8,6 +8,9 @@ interface TimetableItemDao {
     @Query("SELECT * FROM timetable_item_table")
     fun allTimetableItems(): Flow<MutableList<TimetableItem>>
 
+    @Query("SELECT * FROM timetable_item_table WHERE dayOfWeekString=:currentDay")
+    fun timetableItemsByDay(currentDay: String): Flow<MutableList<TimetableItem>>
+
     @Query("INSERT INTO timetable_item_table (name, startTimeString, endTimeString, dayOfWeekString) SELECT name, startTimeString, endTimeString, :dayToCopy FROM timetable_item_table WHERE dayOfWeekString=:currentDay")
     suspend fun copyTimetableItemsByDay(currentDay: String, dayToCopy: String)
 

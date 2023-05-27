@@ -2,9 +2,12 @@ package com.diploma.burnoutapplication.timetable
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 class TimetableItemRepository(private val timetableItemDao: TimetableItemDao) {
     val allTimetableItems: Flow<MutableList<TimetableItem>> = timetableItemDao.allTimetableItems()
+    private val today: String = TimetableItem.dayFormatter.format(LocalDate.now().dayOfWeek)
+    val timetableItemsByDay: Flow<MutableList<TimetableItem>> = timetableItemDao.timetableItemsByDay(currentDay = today)
 
     @WorkerThread
     suspend fun insertTimetableItem(timetableItem: TimetableItem)

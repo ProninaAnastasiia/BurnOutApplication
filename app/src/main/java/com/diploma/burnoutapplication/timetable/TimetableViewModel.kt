@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 class TimetableViewModel(private val repository: TimetableItemRepository): ViewModel()
 {
     var timetableItems: LiveData<MutableList<TimetableItem>> = repository.allTimetableItems.asLiveData()
+    var timetableItemsByDay: LiveData<MutableList<TimetableItem>> = repository.timetableItemsByDay.asLiveData()
 
     fun addTimetableItem(timetableItem: TimetableItem) = viewModelScope.launch {
         repository.insertTimetableItem(timetableItem)

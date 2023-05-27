@@ -1,11 +1,7 @@
 package com.diploma.burnoutapplication
 
-import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,13 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.diploma.burnoutapplication.databinding.FragmentTimetableBinding
 import com.diploma.burnoutapplication.database.DatabaseApplication
 import com.diploma.burnoutapplication.timetable.*
 import java.time.DayOfWeek
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TimetableFragment : Fragment() {
@@ -51,46 +47,13 @@ class TimetableFragment : Fragment() {
 
     private fun setRecyclerView()
     {
-        timetableViewModel.timetableItems.observe(viewLifecycleOwner){
+        timetableViewModel.timetableItemsByDay.observe(viewLifecycleOwner){
             binding.recyclerView.apply {
                 if(isAdded) layoutManager = LinearLayoutManager(requireActivity())
-                adapter = TimetableItemAdapter(it.filterList(it,setDay()))
-                if (TimetableItemAdapter(it.filterList(it,setDay())).itemCount!=0) binding.tvMessage.visibility = View.GONE
+                adapter = TimetableItemAdapter(it)
+                if (it.size!=0) binding.tvMessage.visibility = View.GONE
             }
         }
-    }
-
-    private fun <E> MutableList<E>.filterList(timetableItems: MutableList<TimetableItem>, day: DayOfWeek?): MutableList<TimetableItem> {
-        val filtered: MutableList<TimetableItem> = ArrayList<TimetableItem>()
-        var count = 0
-        for (i in timetableItems) {
-            if (i.dayOfWeek() == day) {
-                filtered.add(i)
-                if(isAdded) setAlarm(requireActivity(), count,i)
-                count++
-            }
-        }
-        filtered.sortBy{it.startTime()}
-        return filtered
-    }
-
-    private fun setAlarm(context: Context, alarmId: Int, timetableItem: TimetableItem) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        AlarmReceiver.id= alarmId
-        intent.putExtra(titleExtra, timetableItem.name + "    " + DateTimeFormatter.ofPattern("H:mm").format(timetableItem.startTime()) + " - " + DateTimeFormatter.ofPattern("H:mm").format(timetableItem.endTime()))
-        val pendingIntent = PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-
-        val calendar = Calendar.getInstance()
-        calendar[Calendar.HOUR_OF_DAY] = timetableItem.startTime()!!.hour
-        calendar[Calendar.MINUTE] = timetableItem.startTime()!!.minute
-        calendar[Calendar.SECOND] = 0
-        if (calendar.time < Date()) calendar.add(Calendar.DAY_OF_MONTH, 7)
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            pendingIntent
-        )
     }
 
     private fun createNotificationChannel(){

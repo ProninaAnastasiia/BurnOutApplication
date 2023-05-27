@@ -59,11 +59,14 @@ class EditTimetableFragment : Fragment() {
             when (item!!.itemId) {
                 R.id.copy -> {
                     SelectionForCopyFragment(null, whatDay()).show(
-                        parentFragmentManager,
-                        "newCopyFragmentTag"
-                    )
+                        parentFragmentManager,"newCopyFragmentTag")
                 }
                 R.id.delete -> {
+                    timetableViewModel.timetableItems.observe(viewLifecycleOwner){
+                        for(i in it){
+                            if(i.dayOfWeekString==whatDay()) AlarmUtils.cancelAlarm(binding.root.context, i)
+                        }
+                    }
                     timetableViewModel.deleteTimetable(whatDay())
                 }
             }

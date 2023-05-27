@@ -111,15 +111,18 @@ class NewTimetableCardFragment (var timetableItem: TimetableItem?, private val d
         {
             val newTask = TimetableItem(name, startTimeString, endTimeString, dayOfWeekString)
             timetableViewModel.addTimetableItem(newTask)
+            AlarmUtils.setAlarm(binding.root.context,newTask)
         }
         else
         {
             timetableItem?.let {
+                AlarmUtils.cancelAlarm(binding.root.context, it)
                 it.name =name
                 it.startTimeString = startTimeString
                 it.endTimeString = endTimeString
                 it.dayOfWeekString = dayOfWeekString
                 timetableViewModel.updateTimetableItem(it)
+                AlarmUtils.setAlarm(binding.root.context, it)
             }
         }
         dismiss()
