@@ -1,6 +1,8 @@
 package com.diploma.burnoutapplication
 
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.Handler
@@ -80,10 +82,11 @@ class MoodFragment : Fragment(), MoodItemClickListener {
     }
 
     private fun setChartOptions() {
+        val xAxis = chart.xAxis
+        xAxis.valueFormatter = MyXAxisFormatter()
         chart.setDrawGridBackground(false)
         chart.description.isEnabled = false
         chart.isHighlightPerTapEnabled = false
-        val xAxis = chart.xAxis
         chart.setScaleEnabled(false)
         chart.description.isEnabled = false
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -150,7 +153,6 @@ class MoodFragment : Fragment(), MoodItemClickListener {
             else { chart.xAxis.setLabelCount(7, true)
             chart.moveViewToX(values.last().x)}
         }
-
     }
 
     class MyXAxisFormatter : ValueFormatter() {

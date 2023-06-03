@@ -131,7 +131,7 @@ class EditPageFragment : Fragment(), TimetableCardClickListener {
                 }
                 R.id.delete -> {
                     timetableViewModel.deleteTimetableItem(timetableItem)
-                    AlarmUtils.cancelAlarm(binding.root.context,timetableItem)
+                    AlarmUtils().cancelAlarm(binding.root.context,timetableItem)
                 }
             }
 

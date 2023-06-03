@@ -54,19 +54,16 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val d
             "Sunday" to binding.chSun.isChecked,)
 
         val days = ArrayList<String>()
-
         for(i in daysMap){
             if(i.value) {
                 days.add(i.key)
                 timetableViewModel.copyTimetable(dayOfWeek!!, i.key)}
         }
-
         timetableViewModel.timetableItems.observe(viewLifecycleOwner){
             for(i in it){
-                if(days.contains(i.dayOfWeekString)) AlarmUtils.setAlarm(binding.root.context, i)
+                if(days.contains(i.dayOfWeekString)) AlarmUtils().setAlarm(binding.root.context, i)
             }
         }
-
         dismiss()
     }
 
@@ -77,10 +74,16 @@ class SelectionForCopyFragment (var timetableItem: TimetableItem?, private val d
             "Friday" to binding.chFri.isChecked, "Saturday" to binding.chSat.isChecked,
             "Sunday" to binding.chSun.isChecked,)
 
+        val days = ArrayList<String>()
         for(i in daysMap){
             if(i.value) {
+                days.add(i.key)
                 timetableViewModel.copyTimetableItem(timetableItem!!, i.key)
-                AlarmUtils.setAlarm(binding.root.context, timetableItem!!)
+            }
+        }
+        timetableViewModel.timetableItems.observe(viewLifecycleOwner){
+            for(i in it){
+                if(days.contains(i.dayOfWeekString)) AlarmUtils().setAlarm(binding.root.context, i)
             }
         }
         dismiss()

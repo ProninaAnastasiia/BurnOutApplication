@@ -140,7 +140,8 @@ class TestFragment : Fragment() {
     private fun getQuestions(): ArrayList<Question>{
         val list = ArrayList<Question>()
 
-        val jsonData = resources.openRawResource(R.raw.questions).bufferedReader().use{it.readText()}
+        val jsonData = resources.openRawResource(R.raw.questions).
+        bufferedReader().use{it.readText()}
 
         val jsonStr = JSONObject(jsonData)
 

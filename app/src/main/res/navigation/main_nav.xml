@@ -14,8 +14,8 @@
             android:id="@+id/action_mainFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            android:id="@+id/action_mainFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
     </fragment>
     <fragment
         android:id="@+id/moodFragment"

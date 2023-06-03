@@ -57,11 +57,9 @@ class TimetableFragment : Fragment() {
     }
 
     private fun createNotificationChannel(){
-        val name: CharSequence = "reminderChannel"
-        val desc = "Channel fo Alarm Manager"
+        val name: CharSequence = "Уведомления о расписании"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID,name,importance)
-        channel.description = desc
         val notificationManager =
             ContextCompat.getSystemService(requireActivity(), NotificationManager::class.java)
         notificationManager!!.createNotificationChannel(channel)
